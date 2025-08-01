@@ -1,6 +1,9 @@
 import { HeroSection } from "@/components/hero";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { featuresData, howItWorksData, statsData } from "@/data/landing";
+import { featuresData, howItWorksData, statsData, testimonialsData } from "@/data/landing";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -67,6 +70,67 @@ export default function Home() {
 
 
       </section>
+
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            What our users say?
+          </h2>
+          <div className="grid grid-1 md:grid-cols-3 gap-8">
+            {testimonialsData.map((data, i) => {
+              return (
+                <Card key={i} className="p-6">
+                  <CardContent className="space-y-4 pt-4">
+                    <div className="flex justify-start items-center gap-2">
+                      <Image
+                        src={data.image}
+                        alt="User image"
+                        width={40}
+                        height={40}
+                        className="rounded-full"
+                      />
+                      <div className="flex flex-col items-start justify-center pl-2">
+                        <h3 className="text-xl font-semibold">{data.name}</h3>
+                        <p className="text-sm ">{data.role}</p>
+                      </div>
+
+                    </div>
+                    <p className="text-gray-600">
+                      {data.quote}
+                    </p>
+                  </CardContent>
+                </Card>
+              )
+            })}
+          </div>
+        </div>
+
+
+      </section>
+
+      <section className="py-20 bg-blue-600">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold text-center mb-4 text-white">
+            Ready to Track Your Finances Wisely 🧠?
+          </h2>
+          <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
+            Join thousands of users who are already managing their finances
+            Wisely with TrackWise
+          </p>
+          <Link href={"/dashboard"}>
+            <Button
+              size={"lg"}
+              className="bg-white text-blue-600 hover:bg-blue-50 animate-bounce"
+            >
+              Start Free Trial
+            </Button>
+          </Link>
+        </div>
+
+
+      </section>
+
+
     </div>
 
   );
